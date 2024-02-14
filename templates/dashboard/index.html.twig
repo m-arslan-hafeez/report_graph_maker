@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            width: 800px;
+            margin: 20px auto;
+        }
+        .dashboard-btn {
+            padding: 10px 20px;
+            background-color: #8e44ad;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-btn:hover {
+            background-color: #9b59b6;
+        }
+    </style>
+</head>
+<body style="background-color:aliceblue">
+<h2>Dashboard</h2>
+<button class="dashboard-btn" onclick="window.location.href='{{ path('app_index') }}'">Back</button>
+
+<!-- Render charts -->
+<div class="chart-container">
+    <h3>Number of Employees by City</h3>
+    <canvas id="employeesByCity"></canvas>
+</div>
+<!-- Add other chart containers here -->
+
+<script>
+    // Render charts using data from PHP
+    var employeesByCityData = {{ employeesByCityData | raw }};
+    // Define data for other charts similarly
+
+    // Function to create datasets from the fetched data
+    function createDataset(data) {
+        var labels = Object.keys(data);
+        var values = Object.values(data);
+        var dataset = {
+            labels: labels,
+            datasets: [{
+                label: 'Number of Employees',
+                data: values,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        };
+        return dataset;
+    }
+
+    // Create charts
+    var ctx1 = document.getElementById('employeesByCity').getContext('2d');
+    if (Object.keys(employeesByCityData).length === 0) {
+        // No data available, display a message or handle it accordingly
+        ctx1.innerHTML = 'No data available';
+    } else {
+        var chart1 = new Chart(ctx1, {
+            type: 'bar',
+            data: createDataset(employeesByCityData),
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Create other charts similarly
+</script>
+</body>
+</html>
