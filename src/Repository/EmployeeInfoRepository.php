@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpMultipleClassDeclarationsInspection */
 
 namespace App\Repository;
 
@@ -21,41 +21,118 @@ class EmployeeInfoRepository extends ServiceEntityRepository
         parent::__construct($registry, EmployeeInfo::class);
     }
 
-    public function getEmployeesByCityData(): array
+    /**
+     * @return EmployeeInfo[] Returns an array of EmployeeInfo objects
+     */
+    public function findEmployeesByCityData(): array
     {
         $entityManager = $this->getEntityManager();
-
         $query = $entityManager->createQuery(
             'SELECT e.residentialCity, COUNT(e.id) as employeeCount
             FROM App\Entity\EmployeeInfo e
             GROUP BY e.residentialCity'
         );
-
         return $query->getResult();
     }
 
-//    /**
-//     * @return EmployeeInfo[] Returns an array of EmployeeInfo objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return EmployeeInfo[] Returns an array of EmployeeInfo objects
+     */
+    public function findEmployeesByMonthlySalaryData(): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT e.monthlySalary, COUNT(e.id) as employeeCount
+            FROM App\Entity\EmployeeInfo e
+            GROUP BY e.monthlySalary'
+        );
+        return $query->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?EmployeeInfo
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * @return EmployeeInfo[] Returns an array of EmployeeInfo objects
+     */
+    public function findEmployeesByJoiningDateData(): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT e.joiningDate, COUNT(e.id) as employeeCount
+            FROM App\Entity\EmployeeInfo e
+            GROUP BY e.joiningDate'
+        );
+        return $query->getResult();
+    }
+
+    /**
+     * @return EmployeeInfo[] Returns an array of EmployeeInfo objects
+     */
+    public function findEmployeesByDepartmentData(): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT e.departmentName, COUNT(e.id) as employeeCount
+            FROM App\Entity\EmployeeInfo e
+            GROUP BY e.departmentName'
+        );
+        return $query->getResult();
+    }
+
+    /**
+     * @return EmployeeInfo[] Returns an array of EmployeeInfo objects
+     */
+    public function findEmployeesByRoleData(): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT e.role, COUNT(e.id) as employeeCount
+            FROM App\Entity\EmployeeInfo e
+            GROUP BY e.role'
+        );
+        return $query->getResult();
+    }
+
+    /**
+     * @return EmployeeInfo[] Returns an array of EmployeeInfo objects
+     */
+    public function findEmployeesByTeamLeadData(): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT e.teamLeadName, COUNT(e.id) as employeeCount
+            FROM App\Entity\EmployeeInfo e
+            GROUP BY e.teamLeadName'
+        );
+        return $query->getResult();
+    }
+
+    /**
+     * @return EmployeeInfo[] Returns an array of EmployeeInfo objects
+     */
+    public function findEmployeesByOvertimeData(): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT e.overtimeHours, COUNT(e.id) as employeeCount
+            FROM App\Entity\EmployeeInfo e
+            GROUP BY e.overtimeHours'
+        );
+        return $query->getResult();
+    }
+
+
+    /**
+     * @return EmployeeInfo[] Returns an array of EmployeeInfo objects
+     */
+    public function findEmployeesByAllowedLeavesData(): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT e.allowedLeaves, COUNT(e.id) as employeeCount
+            FROM App\Entity\EmployeeInfo e
+            GROUP BY e.allowedLeaves'
+        );
+        return $query->getResult();
+    }
+
+
 }

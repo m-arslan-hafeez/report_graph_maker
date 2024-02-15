@@ -38,12 +38,44 @@
     <h3>Number of Employees by City</h3>
     <canvas id="employeesByCity"></canvas>
 </div>
-<!-- Add other chart containers here -->
+<div class="chart-container">
+    <h3>Number of Employees by Salary</h3>
+    <canvas id="employeesBySalary"></canvas>
+</div>
+<div class="chart-container">
+    <h3>Number of Employees by Joining Date</h3>
+    <canvas id="employeesByJoiningDate"></canvas>
+</div>
+<div class="chart-container">
+    <h3>Number of Employees by Department</h3>
+    <canvas id="employeesByDepartment"></canvas>
+</div>
+<div class="chart-container">
+    <h3>Number of Employees by Role</h3>
+    <canvas id="employeesByRole"></canvas>
+</div>
+<div class="chart-container">
+    <h3>Number of Employees by Team Lead</h3>
+    <canvas id="employeesByTeamLead"></canvas>
+</div>
+<div class="chart-container">
+    <h3>Number of Employees by Overtime</h3>
+    <canvas id="employeesByOvertime"></canvas>
+</div>
+<div class="chart-container">
+    <h3>Number of Employees by Allowed Leaves</h3>
+    <canvas id="employeesByAllowedLeaves"></canvas>
+</div>
 
 <script>
-    // Render charts using data from PHP
     var employeesByCityData = {{ employeesByCityData | raw }};
-    // Define data for other charts similarly
+    var employeesByMonthlySalaryData = {{ employeesByMonthlySalaryData | raw }};
+    var employeesByJoiningDateData = {{ employeesByJoiningDateData | raw }};
+    var employeesByDepartmentData = {{ employeesByDepartmentData | raw }};
+    var employeesByRoleData1 = {{ employeesByRoleData | raw }};
+    var employeesByTeamLeadData = {{ employeesByTeamLeadData | raw }};
+    var employeesByOvertimeData = {{ employeesByOvertimeData | raw }};
+    var employeesByAllowedLeavesData = {{ employeesByAllowedLeavesData | raw }};
 
     // Function to create datasets from the fetched data
     function createDataset(data) {
@@ -64,24 +96,109 @@
 
     // Create charts
     var ctx1 = document.getElementById('employeesByCity').getContext('2d');
-    if (Object.keys(employeesByCityData).length === 0) {
-        // No data available, display a message or handle it accordingly
-        ctx1.innerHTML = 'No data available';
-    } else {
-        var chart1 = new Chart(ctx1, {
-            type: 'bar',
-            data: createDataset(employeesByCityData),
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+    var chart1 = new Chart(ctx1, {
+        type: 'line',
+        data: createDataset(employeesByCityData),
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        });
-    }
+        }
+    });
 
-    // Create other charts similarly
+    var ctx2 = document.getElementById('employeesBySalary').getContext('2d');
+    var chart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: createDataset(employeesByMonthlySalaryData),
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var ctx3 = document.getElementById('employeesByJoiningDate').getContext('2d');
+    var chart3 = new Chart(ctx3, {
+        type: 'line',
+        data: createDataset(employeesByJoiningDateData),
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var ctx4 = document.getElementById('employeesByDepartment').getContext('2d');
+    var chart4 = new Chart(ctx4, {
+        type: 'bar',
+        data: createDataset(employeesByDepartmentData),
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var ctx5 = document.getElementById('employeesByRole').getContext('2d');
+    var chart5 = new Chart(ctx5, {
+        type: 'bar',
+        data: createDataset(employeesByRoleData1),
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var ctx6 = document.getElementById('employeesByTeamLead').getContext('2d');
+    var chart6 = new Chart(ctx6, {
+        type: 'bar',
+        data: createDataset(employeesByTeamLeadData),
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var ctx7 = document.getElementById('employeesByOvertime').getContext('2d');
+    var chart7 = new Chart(ctx7, {
+        type: 'bar',
+        data: createDataset(employeesByOvertimeData),
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var ctx8 = document.getElementById('employeesByAllowedLeaves').getContext('2d');
+    var chart8 = new Chart(ctx8, {
+        type: 'bar',
+        data: createDataset(employeesByAllowedLeavesData),
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
 </script>
 </body>
 </html>
